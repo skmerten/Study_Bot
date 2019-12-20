@@ -53,12 +53,12 @@ def contact(request):
         }
     )
 
-def score(request):
+def about(request):
     """Renders the about page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/score.html',
+        'app/about.html',
         {
             'title':'Score',
             'message':'Your application description page.',
