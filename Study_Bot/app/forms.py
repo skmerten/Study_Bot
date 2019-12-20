@@ -21,8 +21,7 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                    'placeholder':'Password'}))
 
 
-class QuestionForm(forms.Form):
-    your_name = forms.CharField(label='Your name', max_length=100)
-
-class NameForm(forms.Form):
-    your_name = forms.CharField(label='Your name', max_length=100)
+class QuestionForm(ModelForm):
+    class Meta:
+        model = Question
+        fields = ['question_text', 'question_type', 'correct_Ans', 'incorrect_1', 'incorrect_2', 'incorrect_3', 'number_correct']
