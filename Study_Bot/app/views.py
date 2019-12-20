@@ -6,18 +6,26 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
+from app.forms import QuestionForm
 
 def newQuestion(request):
-    """Renders a new question page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/newQuestion.html',
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-        }
-    )
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            # data processing
+            return #Sometinf
+    else:
+        assert isinstance(request, HttpRequest)
+        form = QuestionForm()
+        return render(
+            request,
+            'app/newQuestion.html',
+            {
+                'title':'New Question',
+                'year':datetime.now().year,
+                'form':form
+            }
+        )
 
 
 def home(request):
