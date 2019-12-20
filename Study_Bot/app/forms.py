@@ -25,13 +25,14 @@ class QuestionForm(ModelForm):
     possible_answers = forms.ChoiceField(label='Possible Answers')
     def __init__(self, answers, *args, **kwargs):
         super(QuestionForm, self).__init__(*args, **kwargs)
-        self.fields['question_text'].widget.attrs['readonly'] = True
         self.fields['question_type'].widget.attrs['readonly'] = True
-        self.fields['number_correct'].widget.attrs['readonly'] = True
+        self.fields['question_text'].widget.attrs['readonly'] = True
         self.fields['possible_answers'].choices = answers
+        self.fields['number_correct'].widget.attrs['readonly'] = True
+        
     
     class Meta:
         model = Question
-        fields = ['question_text', 'question_type', 'number_correct']
+        fields = ['question_type', 'question_text', 'number_correct']
 
     
