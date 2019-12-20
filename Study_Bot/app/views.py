@@ -23,7 +23,8 @@ def newQuestion(request):
             quest = Question.objects.get(id=select)
             if quest.number_correct < 2:
                 break
-        choices = [('correct', quest.correct_Ans ),('incorrect', quest.incorrect_1),('incorrect', quest.incorrect_2),('incorrect', quest.incorrect_3),]
+        choices = [(True, quest.correct_Ans ),(False, quest.incorrect_1),(False, quest.incorrect_2),(False, quest.incorrect_3),]
+        random.shuffle(choices)
         form = QuestionForm(initial={'question_text': quest.question_text, 'question_type': quest.question_type, 'number_correct': quest.number_correct}, answers = choices)
         return render(
             request,
