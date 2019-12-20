@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Study_Bot", "Study_Bot\Study_Bot.pyproj", "{565E0786-EF45-4C1D-A163-AB4C96DC06DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{565E0786-EF45-4C1D-A163-AB4C96DC06DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{565E0786-EF45-4C1D-A163-AB4C96DC06DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{565E0786-EF45-4C1D-A163-AB4C96DC06DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{565E0786-EF45-4C1D-A163-AB4C96DC06DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A28952D-0CC0-4C97-B03A-30D042EA7E6B}
+	EndGlobalSection
+EndGlobal
