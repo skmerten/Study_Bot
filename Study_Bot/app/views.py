@@ -18,7 +18,8 @@ def newQuestion(request):
     else:
         assert isinstance(request, HttpRequest)
         quest = Question.objects.get(id=1)
-        form = QuestionForm(initial={'question_text': quest.question_text, 'question_type': quest.question_type, 'correct_Ans': quest.correct_Ans, 'incorrect_1': quest.incorrect_1, 'incorrect_2': quest.incorrect_2, 'incorrect_3': quest.incorrect_3, 'number_correct': quest.number_correct})
+        choices = (quest.correct_Ans, quest.incorrect_1, quest.incorrect_2, quest.incorrect_3)
+        form = QuestionForm(initial={'question_text': quest.question_text, 'question_type': quest.question_type, 'number_correct': quest.number_correct}, answers = choices)
         return render(
             request,
             'app/newQuestion.html',

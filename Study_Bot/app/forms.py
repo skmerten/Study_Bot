@@ -22,6 +22,16 @@ class BootstrapAuthenticationForm(AuthenticationForm):
 
 
 class QuestionForm(ModelForm):
+    possible_answers = forms.ChoiceField(label='Possible Answers')
+    def __init__(self, answers, *args, **kwargs):
+        super(QuestionForm, self).__init__(*args, **kwargs)
+        self.fields['question_text'].widget.attrs['readonly'] = True
+        self.fields['question_type'].widget.attrs['readonly'] = True
+        self.fields['number_correct'].widget.attrs['readonly'] = True
+        self.fields['possible_answers'].choices = answers
+    
     class Meta:
         model = Question
-        fields = ['question_text', 'question_type', 'correct_Ans', 'incorrect_1', 'incorrect_2', 'incorrect_3', 'number_correct']
+        fields = ['question_text', 'question_type', 'number_correct']
+
+    
