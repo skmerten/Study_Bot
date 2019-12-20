@@ -8,6 +8,7 @@ from django.template import RequestContext
 from datetime import datetime
 from app.forms import QuestionForm
 from app.models import Question
+import random
 
 def newQuestion(request):
     if request.method == 'POST':
@@ -17,8 +18,10 @@ def newQuestion(request):
             return #Sometinf
     else:
         assert isinstance(request, HttpRequest)
-        quest = Question.objects.get(id=1)
-        choices = (quest.correct_Ans, quest.incorrect_1, quest.incorrect_2, quest.incorrect_3)
+        select = random.randrange(1, Question.objects.all().count() + 1, 1)
+
+        quest = Question.objects.get(id=select)
+        choices = [('correct', quest.correct_Ans ),('incorrect', quest.incorrect_1),('incorrect', quest.incorrect_2),('incorrect', quest.incorrect_3),]
         form = QuestionForm(initial={'question_text': quest.question_text, 'question_type': quest.question_type, 'number_correct': quest.number_correct}, answers = choices)
         return render(
             request,
