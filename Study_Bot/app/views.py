@@ -18,9 +18,11 @@ def newQuestion(request):
             return #Sometinf
     else:
         assert isinstance(request, HttpRequest)
-        select = random.randrange(1, Question.objects.all().count() + 1, 1)
-
-        quest = Question.objects.get(id=select)
+        while True:
+            select = random.randrange(1, Question.objects.all().count() + 1, 1)
+            quest = Question.objects.get(id=select)
+            if quest.number_correct < 2:
+                break
         choices = [('correct', quest.correct_Ans ),('incorrect', quest.incorrect_1),('incorrect', quest.incorrect_2),('incorrect', quest.incorrect_3),]
         form = QuestionForm(initial={'question_text': quest.question_text, 'question_type': quest.question_type, 'number_correct': quest.number_correct}, answers = choices)
         return render(
