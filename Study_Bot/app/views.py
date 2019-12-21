@@ -17,6 +17,7 @@ def newQuestion(request):
         question = Question.objects.get(question_text = request.POST.get('question_text'))
         if request.POST.get('possible_answers') == 'True':
             question.number_correct = question.number_correct + 1
+            question.save()
             return render(
                 request,
                 'app/correct.html',
@@ -26,6 +27,8 @@ def newQuestion(request):
                 }
             )
         else:
+            question.number_correct = 0
+            question.save()
             return render(
                 request,
                 'app/wrong.html',
