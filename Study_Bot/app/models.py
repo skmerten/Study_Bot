@@ -15,3 +15,5 @@ class Question(models.Model):
     incorrect_3 = models.TextField()
     number_correct = models.IntegerField()
 
+class NumQuestions(models.Model):
+    number_questions = models.IntegerField(max_length=1)
