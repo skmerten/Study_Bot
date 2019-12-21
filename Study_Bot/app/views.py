@@ -14,11 +14,29 @@ from django.shortcuts import redirect
 def newQuestion(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
-        if form.is_valid():
-            if form.cleaned_data['possible_answers']:
-                question = Question.objects.get(question_text = form.cleaned_data['question_text'])
-                question.number_correct = question.number_correct + 1
-            
+        question = Question.objects.get(question_text = request.POST.get('question_text'))
+        if request.POST.get('possible_answers') == 'True':
+            question.number_correct = question.number_correct + 1
+            return render(
+                request,
+                'app/correct.html',
+                {
+                    'title': 'Correct',
+                    'year':datetime.now().year
+                }
+            )
+        else:
+            return render(
+                request,
+                'app/wrong.html',
+                {
+                    'title': 'Incorrect',
+                    'question': question.question_text,
+                    'correct_answer': question.correct_Ans,
+                    'year':datetime.now().year
+                }
+            )
+
     else:
         assert isinstance(request, HttpRequest)
         number_of_ques = NumQuestions.objects.get(id = 1)
