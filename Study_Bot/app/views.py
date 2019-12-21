@@ -24,12 +24,15 @@ def newQuestion(request):
         number_of_ques = NumQuestions.objects.get(id = 1)
         number_of_ques = number_of_ques.number_questions
         question_set = []
+        selected_ids = []
         for x in range(number_of_ques):
             while True:
                 select = random.randrange(1, Question.objects.all().count() + 1, 1)
                 quest = Question.objects.get(id=select)
                 if quest.number_correct < 2:
-                    break
+                    if not select in selected_ids:
+                        selected_ids.append(select)
+                        break
             choices = [(True, quest.correct_Ans ),(False, quest.incorrect_1),(False, quest.incorrect_2),(False, quest.incorrect_3),]
             random.shuffle(choices)
             form = QuestionForm(initial={'question_text': quest.question_text, 'number_correct': quest.number_correct}, answers = choices)
@@ -40,7 +43,7 @@ def newQuestion(request):
             {
                 'title':quest.question_type,
                 'year':datetime.now().year,
-                'form':form
+                'forms':question_set,
             }
         )
 

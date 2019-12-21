@@ -7,9 +7,10 @@
 
 <form action="/question" method="post">
     {% csrf_token %}
-    {{ form }}
+    {% for form in forms %}
+        {{ form }}
+        <hr>
+    {% endfor %}
     <input type="submit" value="Submit" />
 </form>
-
-
 {% endblock %}
