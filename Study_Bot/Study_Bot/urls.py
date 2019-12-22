@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^$', app.views.newQuestion, name='newQuestion'),
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^question$', app.views.newQuestion, name='newQuestion'),
-    url(r'^about$', app.views.about, name='about'),
+    url(r'^score$', app.views.score, name='score'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', admin.site.urls),
 ]
