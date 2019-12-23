@@ -88,7 +88,6 @@ def settings(request):
         'app/settings.html',
         {
             'title':'Settings',
-            'message':'Your contact page.',
             'year':datetime.now().year,
         }
     )

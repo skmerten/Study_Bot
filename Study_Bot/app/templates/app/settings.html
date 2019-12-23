@@ -1,20 +1,39 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
+td, th {
+  border: none;
+  text-align: left;
+  padding: 8px;
+}
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<h2>{{ title }}</h2>
+<hr>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<table>
+  <tr>
+    <th>Number of questions to generate each time: </th>
+    <td>1</td>
+  </tr>
+  <tr>
+    <th>Reset all questions to incomplete: </th>
+    <td>Test</td>
+  </tr>
+  <tr>
+    <th>Number of correct answers before completed: </th>
+    <td>2</td>
+  </tr>
+</table>
 
 {% endblock %}
