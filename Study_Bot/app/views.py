@@ -118,9 +118,9 @@ def score(request):
         'app/score.html',
         {
             'title':'Score',
-            'complete':complete,
-            'pertial':partial,
-            'incomplete':incomplete,
+            'complete':scores.count(2),
+            'partial':scores.count(1),
+            'incomplete':scores.count(0),
             'complete_perc':complete_perc,
             'pertial_perc':partial_perc,
             'incomplete_perc':incomplete_perc,   
