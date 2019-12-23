@@ -18,18 +18,27 @@ body {
     background-color:#fff;
     border: none;
 }
-input{
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: auto;
-    padding-right: auto;
-    width: 70%;
-    color: #fff;
-    font: sans-serif;
-    font-size: x-large;
-    background-color:#337ab7;
-    border-color:#2e6da4;
- }
+input[type=submit]{
+    background-color: #656aff;
+    border: none;
+    color: white;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+input[type=text], select{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
  select{
     height:auto;
     width: 60%;

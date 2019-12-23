@@ -29,6 +29,9 @@ tr:nth-child(even) {
   margin: 4px 2px;
   cursor: pointer;
 }
+.input{
+
+}
 </style>
 <h2>{{ title }}</h2>
 <hr>
@@ -40,8 +43,9 @@ tr:nth-child(even) {
         <td><input type="text" name="questionNum"></td>
     </tr>
     <tr>
-        <th>Reset all questions to incomplete: </th>
-        <td><input type="checkbox" name="reset" value="True"></td>
+        <th>Reset all questions to incomplete: 
+        <span style="text-size:15px">Type 'Reset' to reset questions.</span></th>
+        <td><input type="text" name="reset"></td>
     </tr>
     <tr>
         <th>Number of correct answers before completed: </th>
