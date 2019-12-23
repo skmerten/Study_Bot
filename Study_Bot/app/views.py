@@ -107,9 +107,9 @@ def score(request):
             'complete':scores.count(2),
             'partial':scores.count(1),
             'incomplete':scores.count(0),
-            'complete_perc':round(scores.count(2) / len(scores), 2),
-            'pertial_perc':round(scores.count(1) / len(scores), 2),
-            'incomplete_perc':round(scores.count(0) / len(scores), 2),
+            'complete_perc':round(scores.count(2) / len(scores), 2)*100,
+            'pertial_perc':round(scores.count(1) / len(scores), 2)*100,
+            'incomplete_perc':round(scores.count(0) / len(scores), 2)*100,
             'year':datetime.now().year,
         }
     )
