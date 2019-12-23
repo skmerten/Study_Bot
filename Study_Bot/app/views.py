@@ -96,22 +96,8 @@ def settings(request):
 def score(request):
     questions = Question.objects.all()
     scores = []
-    complete = 0
-    partial = 0
-    incomplete = 0
     for each in questions:
         scores.append(each.number_correct)
-    for score in scores:
-        if score == 2:
-            complete += 1
-        elif score == 1:
-            partial += 1
-        elif score == 0:
-            incomplete += 1
-    complete_perc = complete / len(scores)
-    partial_perc = partial / len(scores)
-    incomplete_perc = incomplete / len(scores)
-
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -121,9 +107,9 @@ def score(request):
             'complete':scores.count(2),
             'partial':scores.count(1),
             'incomplete':scores.count(0),
-            'complete_perc':complete_perc,
-            'pertial_perc':partial_perc,
-            'incomplete_perc':incomplete_perc,   
+            'complete_perc':scores.count(2) / len(scores),
+            'pertial_perc':scores.count(1) / len(scores),
+            'incomplete_perc':scores.count(0) / len(scores),
             'year':datetime.now().year,
         }
     )
