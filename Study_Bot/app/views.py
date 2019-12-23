@@ -80,28 +80,50 @@ def home(request):
         }
     )
 
-def contact(request):
+def settings(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/contact.html',
+        'app/settings.html',
         {
-            'title':'Contact',
+            'title':'Settings',
             'message':'Your contact page.',
             'year':datetime.now().year,
         }
     )
 
 def score(request):
-    """Renders the about page."""
+    questions = Question.objects.all()
+    scores = []
+    complete = 0
+    partial = 0
+    incomplete = 0
+    for each in questions:
+        scores.append(each.number_correct)
+    for score in scores:
+        if score == 2:
+            complete += 1
+        elif score == 1:
+            partial += 1
+        elif score == 0:
+            incomplete += 1
+    complete_perc = complete / scores.count()
+    partial_perc = partial / scores.count()
+    incomplete_perc = incomplete / scores.count()
+
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/score.html',
         {
             'title':'Score',
-            'message':'Your application description page.',
+            'complete':complete,
+            'pertial':partial,
+            'incomplete':incomplete,
+            'complete_perc':complete_perc,
+            'pertial_perc':partial_perc,
+            'incomplete_perc':incomplete_perc,   
             'year':datetime.now().year,
         }
     )

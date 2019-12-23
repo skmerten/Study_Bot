@@ -17,7 +17,7 @@ admin.autodiscover()
 urlpatterns = [
     # Examples:
     url(r'^$', app.views.newQuestion, name='newQuestion'),
-    url(r'^contact$', app.views.contact, name='contact'),
+    url(r'^settings$', app.views.settings, name='settings'),
     url(r'^question$', app.views.newQuestion, name='newQuestion'),
     url(r'^score$', app.views.score, name='score'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

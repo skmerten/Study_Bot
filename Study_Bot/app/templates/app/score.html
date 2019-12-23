@@ -2,9 +2,43 @@
 
 {% block content %}
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-<p>Use this area to provide additional information.</p>
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+<h2>{{ title }}.</h2>
+<hr>
+<p>Check back here to track your overall progress.</p>
+<table>
+    <tr>
+        <th>Incomplete</th>
+        <th>Partial</th>
+        <th>Complete</th>
+    </tr>
+    <tr>
+        <td>{{ complete }}</td>
+        <td>{{ patial }}</td>
+        <td>{{ incomplete }}</td>
+    </tr>
+    <tr>
+        <td>{{ complete_perc }}</td>
+        <td>{{ patial_perc }}</td>
+        <td>{{ incomplete_perc }}</td>
+    </tr>
+</table>
 
 {% endblock %}
