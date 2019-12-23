@@ -17,23 +17,37 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 </style>
 <h2>{{ title }}</h2>
 <hr>
 
-<table>
-  <tr>
-    <th>Number of questions to generate each time: </th>
-    <td>1</td>
-  </tr>
-  <tr>
-    <th>Reset all questions to incomplete: </th>
-    <td>Test</td>
-  </tr>
-  <tr>
-    <th>Number of correct answers before completed: </th>
-    <td>2</td>
-  </tr>
-</table>
-
+<form action="/settings" method="post">
+    <table>
+    <tr>
+        <th>Number of questions to generate each time: </th>
+        <td><input type="text" name="questionNum"></td>
+    </tr>
+    <tr>
+        <th>Reset all questions to incomplete: </th>
+        <td><input type="checkbox" name="reset" value="True"></td>
+    </tr>
+    <tr>
+        <th>Number of correct answers before completed: </th>
+        <td><input type="text" name="numberCorrect"></td>
+    </tr>
+    </table>
+    <input type="submit">
+</form>
 {% endblock %}
