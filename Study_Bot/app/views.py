@@ -108,9 +108,9 @@ def score(request):
             partial += 1
         elif score == 0:
             incomplete += 1
-    complete_perc = complete / scores.count()
-    partial_perc = partial / scores.count()
-    incomplete_perc = incomplete / scores.count()
+    complete_perc = complete / len(scores)
+    partial_perc = partial / len(scores)
+    incomplete_perc = incomplete / len(scores)
 
     assert isinstance(request, HttpRequest)
     return render(
