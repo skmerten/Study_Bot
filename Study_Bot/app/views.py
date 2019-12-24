@@ -81,16 +81,22 @@ def home(request):
     )
 
 def settings(request):
-    """Renders the contact page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/settings.html',
-        {
-            'title':'Settings',
-            'year':datetime.now().year,
-        }
-    )
+    if request.method == 'POST':
+        if request.POST.get('reset') == 'True':
+            questions = Question.objects.all()
+            for each in questions:
+                each.number_correct = 0
+                each.save()
+    else:
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'app/settings.html',
+            {
+                'title':'Settings',
+                'year':datetime.now().year,
+            }
+        )
 
 def score(request):
     questions = Question.objects.all()
