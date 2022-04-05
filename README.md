@@ -1,2 +1,3 @@
 # Study_Bot
-Study bot for the A Class exam
+Study bot to help study for the A (Commercial) class license exam.
+
