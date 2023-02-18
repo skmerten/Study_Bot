@@ -44,31 +44,63 @@ def newQuestion(request):
         assert isinstance(request, HttpRequest)
         number_of_ques = NumQuestions.objects.get(id = 1)
         number_of_ques = number_of_ques.number_questions
+
+        number_cor = NumQuestions.objects.get(id = 2)
+        number_cor = number_cor.number_questions
+
         question_set = []
         selected_ids = []
-        for x in range(number_of_ques):
-            while True:
-                select = random.randrange(1, Question.objects.all().count() + 1, 1)
-                quest = Question.objects.get(id=select)
-                number_cor = NumQuestions.objects.get(id = 2)
-                number_cor = number_cor.number_questions
-                if quest.number_correct < number_cor:
-                    if not select in selected_ids:
-                        selected_ids.append(select)
-                        break
-            choices = [(True, quest.correct_Ans ),(False, quest.incorrect_1),(False, quest.incorrect_2),(False, quest.incorrect_3),]
-            random.shuffle(choices)
-            form = QuestionForm(initial={'question_text': quest.question_text, 'number_correct': quest.number_correct}, answers = choices)
-            question_set.append(form)
-        return render(
-            request,
-            'app/newQuestion.html',
-            {
-                'title':quest.question_type,
-                'year':datetime.now().year,
-                'forms':question_set,
-            }
-        )
+
+        allQuestions = Question.objects.all()
+        questionsCompleted = True
+
+        for question in allQuestions:
+            if question.number_correct < number_cor:
+                questionsCompleted = False
+                break
+        
+        if questionsCompleted == True:
+            questions = Question.objects.all()
+            scores = []
+            for each in questions:
+                scores.append(each.number_correct)
+            assert isinstance(request, HttpRequest)
+            return render(
+                request,
+                'app/score.html',
+                {
+                    'title':'You are all done! Reset to continue.',
+                    'complete':scores.count(2),
+                    'partial':scores.count(1),
+                    'incomplete':scores.count(0),
+                    'complete_perc':round(scores.count(2) / len(scores), 2)*100,
+                    'partial_perc':round(scores.count(1) / len(scores), 2)*100,
+                    'incomplete_perc':round(scores.count(0) / len(scores), 2)*100,
+                    'year':datetime.now().year,
+                }
+            )
+        else:
+            for x in range(number_of_ques):
+                while True:
+                    select = random.randrange(1, Question.objects.all().count() + 1, 1)
+                    quest = Question.objects.get(id=select)
+                    if quest.number_correct < number_cor:
+                        if not select in selected_ids:
+                            selected_ids.append(select)
+                            break
+                choices = [(True, quest.correct_Ans ),(False, quest.incorrect_1),(False, quest.incorrect_2),(False, quest.incorrect_3),]
+                random.shuffle(choices)
+                form = QuestionForm(initial={'question_text': quest.question_text, 'number_correct': quest.number_correct}, answers = choices)
+                question_set.append(form)
+            return render(
+                request,
+                'app/newQuestion.html',
+                {
+                    'title':quest.question_type,
+                    'year':datetime.now().year,
+                    'forms':question_set,
+                }
+            )
 
 def home(request):
     """Renders the home page."""
