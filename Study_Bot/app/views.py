@@ -151,20 +151,22 @@ def settings(request):
 
 def score(request):
     questions = Question.objects.all()
+    numCorrect = NumQuestions.objects.get(id=2)
     scores = []
     for each in questions:
         scores.append(each.number_correct)
+    partialComplete = len(questions) - (scores.count(numCorrect.number_questions) + scores.count(0))
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/score.html',
         {
             'title':'Score',
-            'complete':scores.count(2),
-            'partial':scores.count(1),
+            'complete':scores.count(numCorrect.number_questions),
+            'partial': partialComplete,
             'incomplete':scores.count(0),
-            'complete_perc':round(scores.count(2) / len(scores), 2)*100,
-            'partial_perc':round(scores.count(1) / len(scores), 2)*100,
+            'complete_perc':round(scores.count(numCorrect.number_questions) / len(scores), 2)*100,
+            'partial_perc':round(partialComplete / len(scores), 2)*100,
             'incomplete_perc':round(scores.count(0) / len(scores), 2)*100,
             'year':datetime.now().year,
         }
