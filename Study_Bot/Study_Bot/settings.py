@@ -27,7 +27,7 @@ SECRET_KEY = '62d32c35-2949-4adb-a417-04f125434f55'
 DEBUG = False
 
 ALLOWED_HOSTS = [
-   'skmerten.pythonanywhere.com'
+   '127.0.0.1'
     ]
 
 
