@@ -77,6 +77,7 @@ def newQuestion(request):
                     'partial_perc':round(scores.count(1) / len(scores), 2)*100,
                     'incomplete_perc':round(scores.count(0) / len(scores), 2)*100,
                     'year':datetime.now().year,
+                    'complete': True,
                 }
             )
         else:

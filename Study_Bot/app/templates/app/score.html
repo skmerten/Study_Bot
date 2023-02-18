@@ -20,6 +20,12 @@ tr:nth-child(even) {
 }
 </style>
 
+{% if complete %}
+<script>
+  startConfetti();
+</script>
+{% endif %}
+
 <h2>{{ title }}</h2>
 <hr>
 <p>Check back here to track your overall progress.</p>
