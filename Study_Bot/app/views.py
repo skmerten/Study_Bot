@@ -50,7 +50,9 @@ def newQuestion(request):
             while True:
                 select = random.randrange(1, Question.objects.all().count() + 1, 1)
                 quest = Question.objects.get(id=select)
-                if quest.number_correct < 2:
+                number_cor = NumQuestions.objects.get(id = 2)
+                number_cor = number_cor.number_questions
+                if quest.number_correct < number_cor:
                     if not select in selected_ids:
                         selected_ids.append(select)
                         break
@@ -82,11 +84,28 @@ def home(request):
 
 def settings(request):
     if request.method == 'POST':
-        if request.POST.get('reset') == 'True':
+        if request.POST.get('reset') == 'Reset':
             questions = Question.objects.all()
             for each in questions:
                 each.number_correct = 0
                 each.save()
+        if not request.POST.get('questionNum') == '':
+            numQs = NumQuestions.objects.get(id=1)
+            numQs.number_questions = request.POST.get('questionNum')
+            numQs.save()
+        if not request.POST.get('numberCorrect') == '':
+            numCorrect = NumQuestions.objects.get(id=2)
+            numCorrect.number_questions = request.POST.get('numberCorrect')
+            numCorrect.save()
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'app/settings.html',
+            {
+                'title':'Settings',
+                'year':datetime.now().year,
+            }
+        )
     else:
         assert isinstance(request, HttpRequest)
         return render(

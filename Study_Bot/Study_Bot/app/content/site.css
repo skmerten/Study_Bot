@@ -41,13 +41,13 @@ input[type=text], select{
 }
  textarea {
     resize: none;
-    overflow: hidden; 
+    overflow: hidden;
+    height: 20px; 
     padding-left: 50px;
     padding-right: 50px;
     border: none;
-    font-size: 20px;
+    font-size: 50px;
     width: 100%;
-    block-size: fit-content;
  }
 
 label{
